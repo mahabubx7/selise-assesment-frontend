@@ -1,4 +1,4 @@
-import '@mantine/core/styles.css'; // UI framework, not custom
+import '@mantine/core/styles.css'; // Mantine UI framework, not custom css !!!
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';

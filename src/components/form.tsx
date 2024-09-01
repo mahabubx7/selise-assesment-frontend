@@ -15,7 +15,32 @@ type BookingFormState = {
 const AptForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.1rem;
+`;
+
+const InputTag = styled.input`
+  display: inline-block;
+  /* margin-left: 0.7rem; */
+  border: 1px solid gray;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  outline: none;
+`;
+
+const InputSelect = styled.select`
+  display: inline-block;
+  /* margin-left: 0.7rem; */
+  border: 1px solid gray;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  outline: none;
+`;
+
+const FieldSet = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border: none;
 `;
 
 export function BookingForm() {
@@ -37,20 +62,20 @@ export function BookingForm() {
   return (
     <>
       <AptForm onSubmit={handleSubmit(onSubmitHandler)}>
-        <fieldset>
-          <label htmlFor="name">Name</label>
-          <input
+        <FieldSet>
+          <label htmlFor="name">Name: </label>
+          <InputTag
             {...register('name', { required: true })}
             id="name"
             name="name"
             placeholder="i.e. John Doe"
           />
           {errors.name && <span>This field is required</span>}
-        </fieldset>
+        </FieldSet>
 
-        <fieldset>
-          <label htmlFor="gender">Gender</label>
-          <select
+        <FieldSet>
+          <label htmlFor="gender">Gender: </label>
+          <InputSelect
             {...register('gender', { required: true })}
             id="gender"
             name="gender"
@@ -59,24 +84,24 @@ export function BookingForm() {
             <option value="male" label="Male"></option>
             <option value="female" label="Female"></option>
             <option value="others" label="Others"></option>
-          </select>
+          </InputSelect>
           {errors.gender && <span>This field is required</span>}
-        </fieldset>
+        </FieldSet>
 
-        <fieldset>
-          <label htmlFor="age">Age</label>
-          <input
+        <FieldSet>
+          <label htmlFor="age">Age: </label>
+          <InputTag
             {...register('age', { required: true, min: 1, max: 1000 })}
             id="age"
             name="age"
             placeholder="i.e. 24"
           />
           {errors.age && <span>This field is required</span>}
-        </fieldset>
+        </FieldSet>
 
-        <fieldset>
-          <label htmlFor="date">Date</label>
-          <input
+        <FieldSet>
+          <label htmlFor="date">Date: </label>
+          <InputTag
             {...register('date', { required: true })}
             id="date"
             name="date"
@@ -84,11 +109,11 @@ export function BookingForm() {
             placeholder="i.e. 2024-09-01"
           />
           {errors.date && <span>Date is required!</span>}
-        </fieldset>
+        </FieldSet>
 
-        <fieldset>
-          <label htmlFor="time">Time</label>
-          <input
+        <FieldSet>
+          <label htmlFor="time">Time: </label>
+          <InputTag
             {...register('time', { required: true })}
             id="time"
             name="time"
@@ -96,7 +121,7 @@ export function BookingForm() {
             placeholder="i.e. 16:00"
           />
           {errors.time && <span>This field is required</span>}
-        </fieldset>
+        </FieldSet>
 
         <Button type="submit">Book</Button>
       </AptForm>
