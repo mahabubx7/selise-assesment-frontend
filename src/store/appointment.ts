@@ -37,9 +37,9 @@ const demo = [
     date: new Date('2019-09-01'),
     time: '11:00',
   },
-] as AppontmentState[];
+] as AppointmentState[];
 
-export type AppontmentState = {
+export type AppointmentState = {
   name: string;
   gender: 'male' | 'female' | 'others';
   age: number;
@@ -48,13 +48,13 @@ export type AppontmentState = {
 };
 
 export type Appointments = {
-  bookings: AppontmentState[];
+  bookings: AppointmentState[];
 };
 
 const loadAppointment = () => {
   const appointment = localStorage.getItem('appointment');
   if (appointment) {
-    return JSON.parse(appointment) as AppontmentState[];
+    return JSON.parse(appointment) as AppointmentState[];
   }
 
   localStorage.setItem('appointment', JSON.stringify(demo)); // set demo
@@ -71,7 +71,7 @@ export const appointmentSlice = createSlice({
   reducers: {
     addAppointment: (
       state: Appointments,
-      action: PayloadAction<AppontmentState>,
+      action: PayloadAction<AppointmentState>,
     ) => {
       const updated = [...state.bookings, action.payload];
       state.bookings = updated;
@@ -81,6 +81,6 @@ export const appointmentSlice = createSlice({
 });
 
 export const { addAppointment } = appointmentSlice.actions;
-export const getAppointment = (state: { appointment: AppontmentState[] }) =>
+export const getAppointment = (state: { appointment: AppointmentState[] }) =>
   state.appointment;
 export default appointmentSlice.reducer;

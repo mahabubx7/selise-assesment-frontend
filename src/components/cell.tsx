@@ -1,6 +1,7 @@
-import { AppontmentState } from '@/store/appointment';
+import { AppointmentState } from '@/store/appointment';
 import { convertTimeToDate } from '@/utils';
 import styled from 'styled-components';
+import { AppointmentDetails } from './details';
 
 const CalenderDay = styled.div`
   display: flex;
@@ -23,15 +24,10 @@ const ApptDiv = styled.div`
   gap: 0.25rem;
   overflow: hidden;
   overflow-y: scroll;
-  max-height: 3.8rem;
+  max-height: 4.2rem;
 `;
 
-const Appt = styled.span`
-  text-align: left;
-  font-size: 0.65rem;
-`;
-
-export function Cell(props: { day: number; bookings: AppontmentState[] }) {
+export function Cell(props: { day: number; bookings: AppointmentState[] }) {
   const list = props.bookings.sort((a, b) => {
     // sort by field object.time
     return (
@@ -44,7 +40,7 @@ export function Cell(props: { day: number; bookings: AppontmentState[] }) {
       <div>{props.day}</div>
       <ApptDiv>
         {list.map((booking, index) => (
-          <Appt key={index}>{booking.name}</Appt>
+          <AppointmentDetails key={index} data={booking} />
         ))}
       </ApptDiv>
     </CalenderDay>
