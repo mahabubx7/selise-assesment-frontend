@@ -1,8 +1,12 @@
+import '@mantine/core/styles.css'; // UI framework, not custom
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import './index.css';
 import { CalenderPage, ErrorPage, Root } from '@/pages';
+import { store } from '@/store/redux';
+import { MantineProvider } from '@mantine/core';
+import { Provider } from 'react-redux';
 
 // Route registry <Global / Main>
 const routes = createBrowserRouter([
@@ -27,6 +31,10 @@ const routes = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={routes} />
+    <Provider store={store}>
+      <MantineProvider>
+        <RouterProvider router={routes} />
+      </MantineProvider>
+    </Provider>
   </StrictMode>,
 );
