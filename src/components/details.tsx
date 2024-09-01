@@ -18,13 +18,23 @@ export function AppointmentDetails(props: { data: AppointmentState }) {
       <Modal
         opened={opened}
         onClose={close}
-        title={`Appointment by ${props.data.name}`}
+        title={`Booked by ${props.data.name}`}
       >
-        <p>Name: {props.data.name}</p>
-        <p>Gender: {props.data.gender}</p>
-        <p>Age: {props.data.age}</p>
-        <p>Date: {new Date(props.data.date).toUTCString()}</p>
-        <p>Time: {props.data.time}</p>
+        <p>
+          <strong>Name:</strong> {props.data.name}
+        </p>
+        <p>
+          <strong>Gender:</strong> {props.data.gender.toUpperCase()}
+        </p>
+        <p>
+          <strong>Age:</strong> {props.data.age}
+        </p>
+        <p>
+          <strong>Date:</strong> {new Date(props.data.date).toDateString()}
+        </p>
+        <p>
+          <strong>Time:</strong> {props.data.time}
+        </p>
       </Modal>
 
       <Appt onClick={open}>{props.data.name}</Appt>
