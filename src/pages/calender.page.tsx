@@ -4,12 +4,27 @@ import { CalendarSliceState, updateCalendar } from '@/store/calendar';
 import { composeRoute } from '@/utils';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 export interface FormState {
   year: number;
   month: number;
 }
+
+const PageDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.25rem auto;
+  padding: 0 0.5rem;
+`;
+
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
 
 export function CalenderPage() {
   // redux implementation
@@ -41,7 +56,7 @@ export function CalenderPage() {
 
   return (
     <>
-      <div id="navigator">
+      <PageDiv id="navigator">
         <Form>
           <label>
             Year:
@@ -62,6 +77,7 @@ export function CalenderPage() {
               ))}
             </select>
           </label>
+
           <label>
             Month:
             <select
@@ -84,10 +100,10 @@ export function CalenderPage() {
         </Form>
 
         <Appointment />
-      </div>
+      </PageDiv>
 
       <div id="calender">
-        <Calender />
+        <Calender year={formData.year} month={formData.month} />
       </div>
     </>
   );
