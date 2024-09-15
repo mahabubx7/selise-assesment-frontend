@@ -8,7 +8,7 @@ export function Appointment() {
   return (
     <>
       <Modal opened={opened} onClose={close} title="Make An Appointment">
-        <BookingForm />
+        <BookingForm closer={() => close()} />
       </Modal>
 
       <Button onClick={open} size="sm">

@@ -8,7 +8,7 @@ type BookingFormState = {
   name: string;
   gender: 'male' | 'female' | 'others';
   age: number;
-  date: Date | string;
+  date: Date;
   time: string;
 };
 
@@ -43,7 +43,11 @@ const FieldSet = styled.fieldset`
   border: none;
 `;
 
-export function BookingForm() {
+interface IBookingForm {
+  closer: () => void
+}
+
+export function BookingForm(props: IBookingForm) {
   const dispatch = useDispatch();
 
   const {
@@ -56,7 +60,12 @@ export function BookingForm() {
   const onSubmitHandler: SubmitHandler<BookingFormState> = (data) => {
     // console.log(data);
 
-    dispatch(addAppointment(data));
+    dispatch(addAppointment({
+      ...data,
+      date: new Date(data.date),
+    }));
+
+    props.closer(); // close modal
   };
 
   return (

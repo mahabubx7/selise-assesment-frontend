@@ -1,3 +1,5 @@
+import { AppointmentState } from "@/store/appointment";
+
 // compose route for year and month based on the selected values
 export const composeRoute = (year: number, month: number): string => {
   return `/year/${year}/month/${month}`;
@@ -45,3 +47,23 @@ export const convertTimeToDate = (time: string): Date => {
   currentDate.setMinutes(Number(minutes));
   return currentDate;
 };
+
+const getDay = (date: Date) => new Date(date).getDate();
+
+
+// serialize by day
+export const mapByDay = (list: AppointmentState[]) => {
+  const hash = new Map<number, AppointmentState[]>()
+
+  for (const it of list) {
+    const d = getDay(it.date)
+    if (hash.has(d)) {
+      const prev = hash.get(d)
+      if (prev) hash.set(d, [...prev, it])
+    } else {
+      hash.set(d, [it])
+    }
+  }
+
+  return hash
+}

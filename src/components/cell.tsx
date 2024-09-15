@@ -27,13 +27,13 @@ const ApptDiv = styled.div`
   max-height: 4.2rem;
 `;
 
-export function Cell(props: { day: number; bookings: AppointmentState[] }) {
-  const list = props.bookings.sort((a, b) => {
+export function Cell(props: { day: number; bookings: AppointmentState[] | undefined }) {
+  const list = props.bookings ? props.bookings.sort((a, b) => {
     // sort by field object.time
     return (
       convertTimeToDate(a.time).getTime() - convertTimeToDate(b.time).getTime()
     );
-  }); // sorting by time
+  }) : []; // sorting by time
 
   return (
     <CalenderDay>

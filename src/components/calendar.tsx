@@ -1,5 +1,5 @@
 import { Appointments } from '@/store/appointment';
-import { getDaysCount } from '@/utils';
+import { getDaysCount, mapByDay } from '@/utils';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Cell } from './cell';
@@ -31,6 +31,8 @@ export function Calender(props: ICalenderProps) {
       new Date(booking.date).getMonth() === props.month - 1,
   );
 
+  const mappedDay = mapByDay(currentMonthBookings);
+  
   return (
     <>
       <CalenderGrid id="calendar-grid">
@@ -38,9 +40,7 @@ export function Calender(props: ICalenderProps) {
           <Cell
             key={i}
             day={i + 1}
-            bookings={currentMonthBookings.filter(
-              (booking) => new Date(booking.date).getMonth() === i,
-            )}
+            bookings={mappedDay.get(i + 1)}
           />
         ))}
       </CalenderGrid>

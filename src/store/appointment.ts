@@ -5,7 +5,7 @@ export type AppointmentState = {
   name: string;
   gender: 'male' | 'female' | 'others';
   age: number;
-  date: Date | string;
+  date: Date;
   time: string;
 };
 
