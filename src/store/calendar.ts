@@ -21,7 +21,7 @@ const calendar = loadLocalStorage();
 
 const initialState: CalendarSliceState = (calendar as CalendarSliceState) || {
   selectedMonth: new Date().getMonth() + 1,
-  selectedYear: new Date().getFullYear(),
+  selectedYear: 2021, // fixing current year range as expected
 };
 
 // console.log('in-- ', initialState);
